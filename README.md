@@ -65,23 +65,24 @@ flowchart TD
     B --> C{本地路径?}
     C -->|是| D[直接读取目录]
     C -->|否| E[下载并解压]
-    D --> F[静态扫描]
+    D --> F
     E --> F
-    F --> G[安全扫描<br/>带智能过滤]
-    G --> H[内容分析]
-    H --> I[风险评估]
-    I --> J[生成评分]
-    J --> K[评估卡片 + 详细报告]
     
-    F -.->|检查结构| L[目录结构]
-    F -.->|检查格式| M[YAML Frontmatter]
-    G -.->|扫描代码| N[危险导入]
-    G -.->|扫描脚本| O[危险命令]
-    G -.->|扫描内容| P[混淆/凭证/注入]
+    F[静态扫描] --> G[目录结构检查]
+    F --> H[YAML Frontmatter 检查]
+    F --> I[安全扫描]
+    
+    G --> J[汇总结果]
+    H --> J
+    I --> J
+    
+    J --> K[风险评估]
+    K --> L[生成评分]
+    L --> M[输出评估卡片 + 详细报告]
     
     style A fill:#667eea,color:#fff
-    style K fill:#28a745,color:#fff
-    style G fill:#f59e0b,color:#fff
+    style M fill:#28a745,color:#fff
+    style J fill:#f59e0b,color:#fff
 ```
 
 ## 🔒 安全扫描方法
