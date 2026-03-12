@@ -71,18 +71,27 @@ flowchart TD
     F[静态扫描] --> G[目录结构检查]
     F --> H[YAML Frontmatter 检查]
     F --> I[安全扫描]
+    F --> J[内容质量检查]
     
-    G --> J[汇总结果]
-    H --> J
-    I --> J
+    I --> I1[危险导入检测]
+    I --> I2[危险命令模式]
+    I --> I3[混淆检测]
+    I --> I4[凭证暴露检测]
+    I --> I5[提示注入检测]
     
-    J --> K[风险评估]
-    K --> L[生成评分]
-    L --> M[输出评估卡片 + 详细报告]
+    G --> K[汇总结果]
+    H --> K
+    I --> K
+    J --> K
+    
+    K --> L[风险评估]
+    L --> M[生成评分]
+    M --> N[输出评估卡片 + 详细报告]
     
     style A fill:#667eea,color:#fff
-    style M fill:#28a745,color:#fff
-    style J fill:#f59e0b,color:#fff
+    style N fill:#28a745,color:#fff
+    style K fill:#f59e0b,color:#fff
+    style I fill:#ef4444,color:#fff
 ```
 
 ## 🔒 安全扫描方法
